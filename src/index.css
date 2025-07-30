@@ -2,39 +2,76 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Cognizant Social Charity Events Design System */
 
 @layer base {
   :root {
+    /* Core Brand Colors - Cognizant Charity Initiative */
+    --primary: 237 82% 19%;        /* #0E0E52 - Deep navy for trust */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 219 78% 65%;      /* #5E93EF - Vibrant blue for action */
+    --secondary-foreground: 0 0% 100%;
+    --accent: 203 65% 73%;         /* #7FAFDD - Soft blue for warmth */
+    --accent-foreground: 237 82% 19%;
+
+    /* Semantic Colors */
     --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-
+    --foreground: 237 82% 19%;
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-
+    --card-foreground: 237 82% 19%;
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 237 82% 19%;
+    --muted: 203 30% 96%;
+    --muted-foreground: 237 20% 45%;
+    --border: 203 30% 90%;
+    --input: 203 30% 94%;
+    --ring: 219 78% 65%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Impact & Success Colors */
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 100%;
+    --warning: 43 96% 56%;
+    --warning-foreground: 237 82% 19%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Gradients for Visual Impact */
+    --gradient-hero: linear-gradient(135deg, hsl(237 82% 19%) 0%, hsl(219 78% 65%) 100%);
+    --gradient-card: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(203 30% 98%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(219 78% 65%) 0%, hsl(203 65% 73%) 100%);
+    --gradient-overlay: linear-gradient(180deg, rgba(14, 14, 82, 0.8) 0%, rgba(94, 147, 239, 0.6) 100%);
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Typography Scale */
+    --font-size-xs: 0.75rem;
+    --font-size-sm: 0.875rem;
+    --font-size-base: 1rem;
+    --font-size-lg: 1.125rem;
+    --font-size-xl: 1.25rem;
+    --font-size-2xl: 1.5rem;
+    --font-size-3xl: 1.875rem;
+    --font-size-4xl: 2.25rem;
+    --font-size-5xl: 3rem;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Spacing Scale */
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 0.75rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    --spacing-2xl: 3rem;
+    --spacing-3xl: 4rem;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    /* Shadows for Depth */
+    --shadow-sm: 0 1px 2px 0 rgba(14, 14, 82, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(14, 14, 82, 0.1), 0 2px 4px -1px rgba(14, 14, 82, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(14, 14, 82, 0.1), 0 4px 6px -2px rgba(14, 14, 82, 0.05);
+    --shadow-xl: 0 20px 25px -5px rgba(14, 14, 82, 0.1), 0 10px 10px -5px rgba(14, 14, 82, 0.04);
+    --shadow-glow: 0 0 20px rgba(94, 147, 239, 0.3);
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    /* Animation Timings */
+    --transition-fast: 0.15s ease-out;
+    --transition-normal: 0.3s ease-out;
+    --transition-slow: 0.5s ease-out;
 
     --radius: 0.5rem;
 
@@ -100,6 +137,55 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans;
+  }
+
+  /* Charity Events Utility Classes */
+  .gradient-hero {
+    background: var(--gradient-hero);
+  }
+
+  .gradient-card {
+    background: var(--gradient-card);
+  }
+
+  .gradient-accent {
+    background: var(--gradient-accent);
+  }
+
+  .shadow-glow {
+    box-shadow: var(--shadow-glow);
+  }
+
+  .text-gradient {
+    background: var(--gradient-accent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+@layer components {
+  /* Hover animations for interactive elements */
+  .hover-lift {
+    @apply transition-all duration-300 hover:scale-105 hover:shadow-lg;
+  }
+
+  .hover-glow {
+    @apply transition-all duration-300 hover:shadow-glow;
+  }
+
+  /* Card animations */
+  .card-entrance {
+    @apply opacity-0 translate-y-4 transition-all duration-500;
+  }
+
+  .card-entrance.visible {
+    @apply opacity-100 translate-y-0;
+  }
+
+  /* Impact counter animation */
+  .counter-animate {
+    @apply transition-all duration-1000 ease-out;
   }
 }
